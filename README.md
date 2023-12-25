@@ -67,3 +67,44 @@ Press `a` to run on Android
 ### Congratulations! :tada:
 
 You've successfully run the app on your local machine. :partying_face:
+
+## Requirements that are covered
+
+- Layout and UI is made keeping figma prototype as an inspiration
+- Movies are displayed sorted in descending order of popularity and meta data info is shown on each card
+- Movies are shown grouped year wise and by default list starts from 2012 with 20 movies for each year
+- Only single direction scroll to load more movies is working i.e. load movies of next year when user scrolls down until the current year
+- API integration is done with APIs from TMDB
+- Filtering functionality and UI basis selection of one or more genres is in place. (Using OR logic if multiple genres are selected)
+- Have used [restyle](https://github.com/shopify/restyle) by shopify to create theme and UI components
+- Used TypeScript
+- Implemented in React Native
+- Smooth scrolling is working _(But if users scrolls very fast and data for next year is not fetched yet so then user can see a loader at bottom)_
+
+## Requirements that are not covered
+
+- Search movie functionality
+- Bi-directional scroll
+
+## Other improvements that can be done in future
+
+- Skeleton loaders can be added
+- No data component with image/gif
+- Better Error component with image/gif
+- Further optimising scrolling by prefetching data for next year
+- Setup and run the project for IOS enviornment as well
+- Addition of unit, integration and E2E tests
+- Addition of CI CD pipelines to improve dev exp and productivity
+
+## Challenges faced in bi directional scroll
+
+- Whenever `onStartReached` callback is called and new data is appened at the start of the list that is brought from the API, list re renders to show the data from very start and in this way `onStartReached` keeps hitting resulting in an infinite loop of calling previous year APIs.
+- A similar [issue](https://github.com/facebook/react-native/issues/25239) is open in React native repository as well from quite some time now
+- Though I tried some tweaks to make it work but to no avail. Spent some time here but didn't dive deep much due to time constraints and limited bandwidth available.
+
+## Why chose SectionList from React Native
+
+- I know better solutions exist then React Native's FlatList & SectionList. One of the popular and performant library is [FlashList](https://github.com/shopify/flash-list), it also offers SectionList and my initial plan was to use this only.
+References to support my take:
+[Shopify blog](https://shopify.engineering/instant-performance-upgrade-flatlist-flashlist), [Tweet](https://twitter.com/almouro/status/1542848782693449728?lang=en), [Tweet](https://twitter.com/almouro/status/1704880795972690147?lang=en)
+- But didn't go ahead with this as it doesn’t support bi-directional scroll _(It is built on top of [recyclerlistview](https://github.com/Flipkart/recyclerlistview) and that uses quite old version of react native under the hood and this functionality of `onStartReached` came in Virtualised list of React native in `0.72` version recently)_ and I didn't have bandwidth to build custom solution though it didn't work with default React Native implementation as well 🙈
