@@ -51,7 +51,7 @@ yarn android
 
 _Note: Haven't tested for IOS yet so not sure whether it will work there or not_
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ shortly provided you have set up your emulator/simulator correctly.
+If everything is set up _correctly_, you should see the app running in your _Android Emulator_ shortly provided you have set up your emulator correctly.
 
 And if app doesn't run and metro server is showing options to select from like these: _(ideally this should not happen and it will auto run android but just in case)_
 
